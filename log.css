@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{ 
+    background-image: url(../image/24e40533-968d-44e9-8c30-c3e79748a32c.jpg);
+    flex-direction: row;
+    background-repeat: no-repeat;
+   background-size: cover;
+}
+.row{         /*the size for every image and box*/
+    margin-top: 5%;
+    display:flex;
+    justify-content: space-between;
+    
+}
+label{
+    display:block;
+    margin-top: 15px;
+    margin-left: 45%;
+    margin-right: 45%;
+ }
+ 
+ input[type="text"],[type="email"],input[type="password"]{
+     border: 1px solid ;
+     border-radius: 5px;
+     padding: 7px;
+     width: 300px;
+     background-color: transparent;
+     color: #fff; 
+}
+fieldset{
+    height: 300px;
+    width: 500px;
+    text-align: center;
+    background-color: transparent;
+    color: #fff;
+    font-size: 19px;
+    
+    
+}
+.red-btn{
+        border: 1px solid #fff;
+        padding: 7px;
+        border-radius: 5px;
+        background:transparent;
+        color: #fff ;
+    }
+.red-btn:hover{
+        background: #f44336;
+        color:#fff ;
+    }
+
+.login {
+    margin-top: 200px;
+    margin-left:460px;
+   
+}  
+input:hover{
+    background: #f4433699;
+    color:#fff ;
+} 
+#modal{
+    display:block;
+    width:100px;
+    height: 200px;
+    border: none;
+
+}

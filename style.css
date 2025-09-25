@@ -1,0 +1,86 @@
+*{
+
+    margin: 0px;
+    flex-direction:row ;
+    scroll-behavior: smooth;
+    
+}
+
+#content{
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    background-image: url(../image/11.jpg);
+    background-size:cover;
+}
+#navber{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#navber #nav-left{
+    margin-left: 20px;
+}
+#navber #nav-left h1{
+    color:beige;
+    font-size: 30px;
+    font-weight: 100;
+    transition: 0.4s;
+
+}
+#navber #nav-center a{
+    margin-left: 20px;
+    color: rgb(226, 226, 207);
+    font-size: 25px;
+}
+#navber #nav-center a:hover{
+    color: rgb(137, 137, 77);
+}
+<style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+</style>
+#navber #nav-right{
+    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#nav-right span{
+    margin-right: 12px;
+   cursor: pointer;
+    font-size: 25px;
+    color: beige;
+}
+#nav_right select{
+    margin-right: 30px;
+    color: rgb(227, 227, 197);
+    transition: 0.4s;
+    font-size: 20px;
+}
+#nav_right select:hover{
+    color: rgb(137, 137, 77);
+}
+#nav-right button{
+    background: none;
+    padding: 15px;
+    font-size: 17px;
+    width: 160px;
+    color: antiquewhite;
+    border-radius:35px ;
+    border:solid  antiquewhite 0.5cap;
+   transition: 0.4s;
+}
+#nav-right button:hover{
+background-color: rgb(149, 149, 112);
+}
+
+
+

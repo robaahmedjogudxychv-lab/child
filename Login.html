@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+    }
+    .login-box h2 {
+      margin-bottom: 20px;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .login-box button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .login-box button:hover {
+      background: #0056b3;
+    }
+    .create-account {
+      margin-top: 15px;
+      cursor: pointer;
+      color: #007bff;
+      font-size: 15px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.4s ease;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      width: 380px;
+      position: relative;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: slideDown 0.5s ease;
+    }
+    .modal-content h3 {
+      margin-bottom: 15px;
+      color: #007bff;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .modal-content button {
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #registerBtn {
+      background: #007bff;
+    }
+    #registerBtn:hover {
+      background: #0860bf;
+    }
+    #backToLoginBtn {
+      background: #6c757d;
+      margin-top: 10px;
+    }
+    #backToLoginBtn:hover {
+      background: #5a6268;
+    }
+    .close {
+      position: absolute;
+      top: 12px; right: 18px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #999;
+    }
+    .close:hover {
+      color: #333;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideDown {
+      from {transform: translateY(-30px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button id="loginBtn">Login</button>
+    <div class="create-account">
+      <i class="fa-solid fa-user-plus"></i> Create Account
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal" id="registerModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Create New Account</h3>
+      <input type="text" id="newName" placeholder="Full Name">
+      <input type="email" id="newEmail" placeholder="Email Address">
+      <input type="password" id="newPassword" placeholder="Password">
+      <button id="registerBtn">Register</button>
+      <button id="backToLoginBtn">Back to Login</button>
+    </div>
+  </div>
+
+  <!-- Toastr -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "timeOut": "2000"
+      };
+
+      // Fake AJAX Login
+      $("#loginBtn").click(function () {
+        let email = $("#email").val();
+        let password = $("#password").val();
+
+        if (email && password) {
+          toastr.info("Checking credentials...");
+
+          // Simulate AJAX request
+          $.ajax({
+            url: "fake-login-endpoint", // This doesn't exist
+            method: "POST",
+            data: {
+              email: email,
+              password: password
+            },
+            success: function () {
+              setTimeout(() => {
+                toastr.success("Login successful ");
+                window.location.href = "index.html";
+              }, 1000);
+            },
+            error: function () {
+              setTimeout(() => {
+                toastr.success("Login successful "); // Simulated success anyway
+                window.location.href = "index.html";
+              }, 1000);
+            }
+          });
+        } else {
+          toastr.error("Please enter email and password");
+        }
+      });
+
+      // Open register modal
+      $(".create-account").click(function(){
+        $("#registerModal").fadeIn();
+      });
+
+      // Close modal
+      $(".close, #backToLoginBtn").click(function(){
+        $("#registerModal").fadeOut();
+        $("#newName, #newEmail, #newPassword").val("");
+      });
+
+      // Fake AJAX Register
+      $("#registerBtn").click(function () {
+        let name = $("#newName").val();
+        let email = $("#newEmail").val();
+        let password = $("#newPassword").val();
+
+        if (name && email && password) {
+          toastr.info("Creating your account...");
+
+          // Simulate AJAX
+          $.ajax({
+            url: "fake-register-endpoint",
+            method: "POST",
+            data: {
+              name: name,
+              email: email,
+              password: password
+            },
+            success: function () {
+              setTimeout(() => {
+                toastr.success("Account created successfully ✅");
+                $("#registerModal").fadeOut();
+                $("#newName, #newEmail, #newPassword").val("");
+              }, 1000);
+            },
+            error: function () {
+              setTimeout(() => {
+                toastr.success("Account created successfully ✅"); // Simulated success anyway
+                $("#registerModal").fadeOut();
+                $("#newName, #newEmail, #newPassword").val("");
+              }, 1000);
+            }
+          });
+        } else {
+          toastr.error("Please fill in all fields");
+        }
+      });
+
+      // Hide modal on load
+      $("#registerModal").hide();
+    });
+  </script>
+
+</body>
+</html>
